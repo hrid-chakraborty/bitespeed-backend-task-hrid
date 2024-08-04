@@ -7,7 +7,7 @@ router.post('/', async (req: Request, res: Response) => {
   const { email, phoneNumber } = req.body;
   
   if (!email && !phoneNumber) {
-    return res.status(400).json({ error: 'Email or phoneNumber is required' });
+    return res.status(400).json({ error: 'Email or Phone Number is required' });
   }
 
   const db = await dbPromise;
