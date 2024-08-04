@@ -14,7 +14,7 @@ router.post('/', async (req: Request, res: Response) => {
 
   // Fetch existing contacts
   const existingContacts = await db.all(`
-    SELECT * FROM contacts
+    SELECT * FROM Contact
     WHERE email = ? OR phoneNumber = ?
   `, [email, phoneNumber]);
 
@@ -29,7 +29,7 @@ router.post('/', async (req: Request, res: Response) => {
   if (!primaryContact) {
     // If there is no existing contact, create a new primary contact
     const result = await db.run(`
-      INSERT INTO contacts (email, phoneNumber, linkPrecedence)
+      INSERT INTO Contact (email, phoneNumber, linkPrecedence)
       VALUES (?, ?, 'primary')
     `, [email, phoneNumber]);
 
@@ -48,7 +48,7 @@ router.post('/', async (req: Request, res: Response) => {
     const hasNewInfo = (email && email !== primaryContact.email) || (phoneNumber && phoneNumber !== primaryContact.phoneNumber);
     if (hasNewInfo) {
       const result = await db.run(`
-        INSERT INTO contacts (email, phoneNumber, linkPrecedence, linkedId)
+        INSERT INTO Contact (email, phoneNumber, linkPrecedence, linkedId)
         VALUES (?, ?, 'secondary', ?)
       `, [email, phoneNumber, primaryContact.id]);
 

@@ -89,4 +89,4 @@ The server should now be running on `http://localhost:3000`.
 
 - **Database File**: The SQLite database is stored in the database.sqlite file, create automatically in the project directory when the application is first run.
     
-- **Initialization**: The database is initialized with a contacts table if it does not already exist.
+- **Initialization**: The database is initialized with a `Contact` table if it does not already exist.
