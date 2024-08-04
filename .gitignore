@@ -1,5 +1,6 @@
 # SQLite databases
 *.sql
+*.sqlite
 
 # Logs
 logs
